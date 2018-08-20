@@ -1,0 +1,4 @@
+{"_id":{"$oid":"5b312b941c74674b40f8476a"},"date_created":"2018-06-25","url":"https://policies.google.com/terms","versions":[{"_id":"5b312b941c74674b40f84769","date_created":"2018-06-24"},{"_id":"5b312c4d1c74674b40f8476b","date_created":"2018-06-25"}]}
+{"_id":{"$oid":"5b4e63f91c746747a0c035df"},"date_created":"2018-04-03","url":"https://developers.google.com/terms/site-terms","versions":[{"_id":"5b4e63f91c746747a0c035de","date_created":"2018-07-17"}]}
+{"_id":{"$oid":"5b4e646a1c746747a0c035e1"},"date_created":"2018-04-03","url":"https://developers.google.com/maps/terms","versions":[{"_id":"5b4e646a1c746747a0c035e0","date_created":"2018-07-17"}]}
+{"_id":{"$oid":"5b4e64881c746747a0c035e3"},"date_created":"2018-04-03","url":"https://developers.google.com/terms/","versions":[{"_id":"5b4e64881c746747a0c035e2","date_created":"2018-07-17"}]}

@@ -1,0 +1,38 @@
+.ResultsTable {
+
+}
+
+.ResultTable-pageControls {
+  padding-bottom: 1.5em;
+}
+
+.ResultsTable table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.ResultsTable td, th {
+    /* border: 1px solid #dddddd; */
+    text-align: left;
+    padding: 8px;
+    text-overflow: ellipsis;
+}
+
+.ResultsTable tr:nth-child(even) {
+    background-color: white;
+}
+
+.ResultsTable tr:hover {
+    background-color: var(--light_secondary);
+    cursor: pointer;
+}
+
+.ResultsTable .table-header {
+  background-color: inherit;
+}
+
+.ResultsTable .table-header:hover {
+  background-color: inherit;
+  cursor: default;
+}

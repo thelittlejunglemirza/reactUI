@@ -1,0 +1,25 @@
+.SubMenu-parent {
+  padding-top:15px;
+  color: black;
+  cursor: pointer;
+  margin-left: 15%;
+}
+.SubMenu-parent b {
+  font-size: 15px;
+}
+
+.SubMenu-Tab {
+  border-top: solid;
+  border-right: solid;
+  border-left: solid;
+  border-radius: 10px;
+  border-color: black;
+}
+
+.SubMenu-Tab-active {
+  border-top: solid;
+  border-right: solid;
+  border-left: solid;
+  border-width: thin;
+  border-color: #c4c0b4;
+}

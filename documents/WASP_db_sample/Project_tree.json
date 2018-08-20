@@ -1,0 +1,17 @@
+{
+  "project_name": "Priority Marker",
+  "api_list":[
+    {
+      "api":"Google Maps",
+      "tos_list": [
+        {
+          "tos":"http://some/tos/url",
+          "versions": [
+            "oldest version bd id",
+            "newest version bd id"
+          ]
+        }
+      ]
+    }
+  ]
+}

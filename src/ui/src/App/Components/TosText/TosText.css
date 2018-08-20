@@ -1,0 +1,36 @@
+.TosText-header {
+  color:black;
+  margin-left: 60px;
+  margin-right: 5px;
+  margin-top: 5px;
+  font-size: 17px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(250, 255, 189);
+}
+
+.textContainer {
+  background-color: white;
+  overflow-y:scroll;
+  overflow-x: hidden;
+  box-shadow: 1px 1px 5px #555 inset;
+  margin-left: 60px;
+
+
+  /* word-wrap: break-word; */
+}
+
+.textContainer pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+
+.TosText-header-PScontroler {
+  background-color: white;
+  margin-left: auto;
+}

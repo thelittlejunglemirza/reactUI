@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: white;
+  color: var(--denim);
+  overflow: hidden;
+}
+
+div.noPadding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+div.noPadding-withMargin {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 20px;
+}
+
+div.noMargin {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+div.componentHeader {
+  margin-top:15px;
+  margin-bottom: 15px;
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+div.topTab ul > li > a {
+    color: white;
+    /* text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; */
+}
+
+div.topTab ul > li > a:hover {
+    color: #555;
+    /* text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; */
+}
+
+div.container-fluid {
+  padding-left: 0;
+}
+
+/* GLOBAL COLOR SCHEME */
+:root {
+  --light_primary: #03A9F4;
+  --light_secondary: #E1F5FE;
+  --dark_primary: #37474F;
+
+  --grey_dark: #546E7A;
+  --grey_light:#EEEEEE;
+
+  --blue: #4484CE;
+  --green: #4CAF50;
+  --denim: #1A2930;
+  --grey: #F5F8FB;
+  --yellow: #EBA023;
+  --orange: #F19F4D;
+}

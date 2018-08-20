@@ -1,0 +1,27 @@
+.header-topnav nav {
+  margin-bottom:0;
+  background-color: var(--denim);
+  border:none;
+  border-radius: 0;
+}
+
+.iconElementLeft {
+  height:40px;
+  width:40px;
+  padding:0;
+  margin-left: 10px;
+  margin-top: 3px;
+  justify-content: center;
+}
+
+.makeMeBlue {
+  background-color: var(--denim);
+}
+
+.header-wasp-text {
+  text-align: left;
+  font-size: 28.8px;
+  margin-top:6px;
+  font-weight: 700;
+  color:var(--grey);
+}

@@ -1,0 +1,37 @@
+.Api-Window{
+  display: flex;
+  flex-direction: row;
+}
+
+.ApiData-container {
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.Api-Data-and-TopNav {
+  margin-left: 20%;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  width: 80%
+}
+
+.ApiData-components {
+
+}
+
+.ApiData-SideMenu-cont {
+  width: 20%;
+  position:absolute;
+  background-color: var(--dark_primary);
+}
+
+.ApiData-content-components-overview{
+
+}
+
+.ApiData-content-components-riskAssesment{
+  display: flex;
+  flex-direction: row;
+}

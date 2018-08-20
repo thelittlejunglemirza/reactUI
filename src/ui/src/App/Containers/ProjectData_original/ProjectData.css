@@ -1,0 +1,40 @@
+.Project-Window {
+  display: flex;
+  flex-direction: row;
+}
+
+.Project-Data-and-TopNav {
+  margin-left: 20%;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  width: 80%
+}
+
+.ProjectData-container {
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.ProjectData-SideMenu-cont {
+  width: 20%;
+  position:absolute;
+  background-color: var(--dark_primary);
+}
+
+.ProjectData-content-components-overview{
+  /* margin-left: 20%; */
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 80%
+}
+
+.ProjectData-content-components-riskAssesment{
+  margin-left: 20%;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+}

@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.App-center-cont {
+  display:flex;
+  flex-direction: column;
+}
+.App-SideMenu-cont {
+  width: 20%;
+  background-color: var(--dark_primary);
+}

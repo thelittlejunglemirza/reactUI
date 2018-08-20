@@ -1,0 +1,43 @@
+.toolContainer {
+  margin-top: 30px;
+  display: table;
+  position: relative;
+}
+
+h3 {
+  color:#fff;
+}
+
+.listContainer {
+
+}
+
+.priorityListContainer2 h2 {
+  color:#c0c2c5;
+  height: 10px;
+}
+
+.listContainer li {
+  color:#c0c2c5;
+  border-bottom: 6px solid #19212b;
+  background-color: #2e3a3f;
+}
+
+.listContainer li:last-child {
+    border:none;
+}
+
+.listContainer ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+#scroll-1::-webkit-scrollbar {
+    width: 6px;
+    background-color: grey;
+}
+
+#scroll-1::-webkit-scrollbar-thumb {
+    width: 6px;
+    background-color: grey;
+}

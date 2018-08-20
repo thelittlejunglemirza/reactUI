@@ -1,0 +1,917 @@
+{
+	"info": {
+		"_postman_id": "78b28252-3b2f-4eb3-93a1-6153f25926a6",
+		"name": "WASP Server tests",
+		"description": "# Introduction\nWhat does your API do?\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\nWhat errors and status codes can a user expect?\n\n# Rate limit\nIs there a limit to the number of requests an user can send?",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tos Endpoints",
+			"description": "",
+			"item": [
+				{
+					"name": "Tos options",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b788abee-6949-4995-8d42-ff79e6e579a7",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Returned 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "OPTIONS",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/api/tos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add an entry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6199e808-5e87-49fe-b74b-5f5a243be78f",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Returned 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\t\n\t\"url\":\"http://testing.com/postman/testscript\",\n\t\"statements\":[{\n\t\t\"text\":\"Test Text\",\"tag\":[\"Test\",\"Tag\"],\"comment\":\"test\"}],\n\t\"riskAssessment\":\"tester\",\n\t\"dom\":\"This is a test\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/tos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tos"
+							]
+						},
+						"description": "Adds valid entry to Tos collection"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tos collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0cfe79c3-d958-419a-ad30-1176fc5fb088",
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"console.log(data)",
+									"",
+									"var last_entry = data[0]",
+									"var posted_entry = {\t",
+									"    \t\"dateReviewed\":\"3000\",",
+									"    \t\"url\":\"http://testing.com/postman/testscript\",",
+									"    \t\"statements\":[{",
+									"    \t\t\"text\":\"Test Text\",\"tag\":[\"Test\",\"Tag\"],\"comment\":\"test\"}],",
+									"    \t\"dom\":\"This is a test\"",
+									"    }",
+									"",
+									"tests[\"Returned 200\"] = responseCode.code === 200;",
+									"tests[\"Latest entry was from Postman\"] = (last_entry[\"dom\"] === posted_entry[\"dom\"] && last_entry[\"url\"] === posted_entry[\"url\"])",
+									"pm.environment.set(\"posted_tos_id\", last_entry[\"_id\"])",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "start",
+								"value": "-1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\t\n\t\"dateReviewed\":\"3000\",\n\t\"url\":\"http://testing.com/postman/testscript\",\n\t\"statements\":[{\n\t\t\"text\":\"Test Text\",\"tag\":[\"Test\",\"Tag\"],\"comment\":\"test\"}],\n\t\t\"dom\":\"This is a test\"\n\t\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/tos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tos"
+							]
+						},
+						"description": "Gets all objects from Tos collection, and test to ensure that previous post went through (last entry was from postman).\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Tos versions - 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6ec98a53-1edd-4a01-b959-a32e1dc54530",
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"var last_entry = data[0]",
+									"",
+									"tests[\"Returned 200\"] = responseCode.code === 200;",
+									"tests[\"Latest entry was from Postman\"] = (last_entry[\"url\"] === \"http://testing.com/postman/testscript\")",
+									"tests[\"Latest version appended\"] = (last_entry[\"versions\"][0][\"_id\"] === pm.environment.get(\"posted_tos_id\"))",
+									"",
+									"console.log(last_entry[\"url\"])",
+									"pm.environment.set(\"posted_tosVersions_url\", last_entry[\"url\"])"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "start",
+								"value": "-1"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/api/tos/versions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tos",
+								"versions"
+							]
+						},
+						"description": "Gets all the objects in Tos Versions, checks if previous post was mapped/append to appropriate TosVersion object."
+					},
+					"response": []
+				},
+				{
+					"name": "TosVersions Options",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c6f3ff91-1db4-4c45-b9a0-3ec8f9e8c003",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Returned 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/api/tos/versions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tos",
+								"versions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific TosVersion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ae07d36c-4a88-4c6a-8901-a4d230227ca2",
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"var last_entry = data",
+									"",
+									"tests[\"Returned 200\"] = responseCode.code === 200;",
+									"tests[\"Latest entry was from Postman\"] = (last_entry[\"url\"] === \"http://testing.com/postman/testscript\")"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "url",
+								"value": "{{posted_tosVersions_url}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/api/tos/versions/single",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tos",
+								"versions",
+								"single"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Append to statement",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e86d1c53-3974-44cc-a81d-13c81fbfee1e",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Returned 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\": \"statements\",\r\n    \"value\": \r\n        {\r\n            \"text\": \"#@postman auto tests PATCH\",\r\n            \"tag\": [\r\n                \"test0\",\r\n                \"test1\"\r\n            ], \r\n            \"comment\": \"test comment\"\r\n        }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/tos/{{posted_tos_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tos",
+								"{{posted_tos_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific Tos - 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3f7f1e54-395f-47a5-b424-af22541695e4",
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"var posted_entry = {",
+									"            \"text\": \"#@postman auto tests PATCH\",",
+									"            \"tag\": [",
+									"                \"test0\",",
+									"                \"test1\"",
+									"            ], ",
+									"            \"comment\": \"test comment\"",
+									"        }",
+									"",
+									"",
+									"tests[\"Returned 200\"] = responseCode.code === 200;",
+									"tests[\"Got correct entry\"] = (data[\"url\"] === \"http://testing.com/postman/testscript\")",
+									"tests[\"Statement was appened (patched)\"] = (data[\"statements\"][1]['text'] === posted_entry['text'])",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/api/tos/{{posted_tos_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tos",
+								"{{posted_tos_id}}"
+							]
+						},
+						"description": "Gets the Tos object with the {{id}}, and tests if the object is correctly found/formated, and that a statement was patched"
+					},
+					"response": []
+				},
+				{
+					"name": "Replace a statement",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\": \"statements\",\r\n    \"value\": \r\n        [{\r\n            \"text\": \"#@postman auto tests PUT\",\r\n            \"tag\": [\r\n                \"test0\",\r\n                \"test1\"\r\n            ], \r\n            \"comment\": \"test comment\"\r\n        }]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/tos/{{posted_tos_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tos",
+								"{{posted_tos_id}}"
+							]
+						},
+						"description": "Replaces statement in Tos Collection with one object."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific Tos - 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2f26c67e-290a-420a-af4f-5a962f5657f0",
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"var posted_entry = {",
+									"            \"text\": \"#@postman auto tests PUT\",",
+									"            \"tag\": [",
+									"                \"test0\",",
+									"                \"test1\"",
+									"            ], ",
+									"            \"comment\": \"test comment\"",
+									"        }",
+									"",
+									"console.log(data['statements'])",
+									"tests[\"Returned 200\"] = responseCode.code === 200;",
+									"tests[\"Got correct entry\"] = (data[\"url\"] === \"http://testing.com/postman/testscript\")",
+									"tests[\"Statement was replaced (put)\"] = (data[\"statements\"][0]['text'] === posted_entry['text'] && data[\"statements\"].length === 1)",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/api/tos/{{posted_tos_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tos",
+								"{{posted_tos_id}}"
+							]
+						},
+						"description": "Gets the Tos object with the {{id}}, and tests if the object is correctly found/formated, and that a statement was patched"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an entry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "03f47489-b43c-4f11-a2df-216aa5a0548e",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Returned 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"url\":\"http://testing.com/postman/testscript\"}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/tos/{{posted_tos_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tos",
+								"{{posted_tos_id}}"
+							]
+						},
+						"description": "Deletes object with {{id}} from Tos Collection, which also deletes the this tos versions instacnce in TosVersions."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Tos versions - 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b74c6aed-2d00-4133-8532-f1e2197bcb4a",
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"var last_entry = data[0]",
+									"",
+									"tests[\"Returned 200\"] = responseCode.code === 200;",
+									"tests[\"Latest version removed\"] = (last_entry[\"versions\"].length === 0)",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "start",
+								"value": "-1"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/api/tos/versions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tos",
+								"versions"
+							]
+						},
+						"description": "Gets all objects in TosVersion collection, checks if the last version entry from these tests has been pulled from versions array."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a6f675c4-3b5f-4af6-b552-050f10c1adf7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "bf707208-e5b3-4b15-9c2a-86f3af1b40be",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Api Endpoints",
+			"description": "",
+			"item": [
+				{
+					"name": "API options",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ad940299-50f0-48d0-9dce-4e155061c835",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Returned 200\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/api/api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add an entry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d874be81-73ef-4f7b-ae4b-ffc265130cb8",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Returned 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n    \t\"api_name\":\"POSTMAN API TEST\",\n        \"provider\": \"POSTMAN\",\n        \"tos_list\": [\n            \"some id\"\n        ]\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Api collection - 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bf827dfd-0a5d-4ceb-9ce7-f4de036ffdc6",
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"var last_entry = data[0]",
+									"",
+									"tests[\"Returned 200\"] = responseCode.code === 200;",
+									"tests[\"Latest entry was from Postman\"] = (last_entry[\"provider\"] === \"POSTMAN\")",
+									"pm.environment.set(\"posted_api_id\", last_entry[\"_id\"])"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "start",
+								"value": "-1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"url\":\"https://www.apache.org/licenses/LICENSE-2.0\",\"provider\":\"apache\",\"riskAssessment\":\"My risk assessment\",\"riskLevel\":\"low\",\"tos\":[\"5b27f51b1c7467155ca60330\"]}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an entry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c31f0b26-5f3e-4724-a2dd-7da8683e936f",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Returned 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/api/api/{{posted_api_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"api",
+								"{{posted_api_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Api collection - 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aedac158-3103-45f6-b2e7-125bebd23e3d",
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"var last_entry = data[0]",
+									"",
+									"tests[\"Returned 200\"] = responseCode.code === 200;",
+									"tests[\"Latest entry from Postman deleted\"] = (last_entry[\"url\"] !== \"http://testing.com/postman/testscript\" && last_entry[\"provider\"] !== \"POSTMAN\")"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "start",
+								"value": "-1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"url\":\"https://www.apache.org/licenses/LICENSE-2.0\",\"provider\":\"apache\",\"riskAssessment\":\"My risk assessment\",\"riskLevel\":\"low\",\"tos\":[\"5b27f51b1c7467155ca60330\"]}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"api"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project Endpoints",
+			"description": "",
+			"item": [
+				{
+					"name": "Project options",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8b1427af-4072-4180-bffd-d43c6480cbc5",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Returned 200\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/api/project",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add an entry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4c23fd14-04fa-44bb-94fd-553d439b8ad0",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"Returned 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"project_name\":\"POST MAN TEST\",\n\t\"api_list\":[\n\t\t\"Google Maps\",\n\t\t\"Google Maps\"\n\t\t]\n\t\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/project",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Project collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f5a6c60e-288f-40ee-97a4-bcf4b0b7f354",
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"var last_entry = data[0]",
+									"",
+									"console.log(last_entry)",
+									"",
+									"tests[\"Returned 200\"] = responseCode.code === 200;",
+									"tests[\"Latest entry was from Postman\"] = (last_entry[\"project_name\"] === \"POST MAN TEST\")"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "start",
+								"value": "-1"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/api/project",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"project"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,110 @@
+
+body {
+  overflow-x: hidden;
+}
+
+.PriorityMarker-header {
+  color:black;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  font-size: 0px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  height: 4%;
+  background-color: rgb(250, 255, 189);
+}
+
+.Tos-Window{
+  display: flex;
+  flex-direction: row;
+}
+
+.Tos-Data-and-TopNav {
+  margin-left: 20%;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  width: 100%;
+}
+
+.TosData-components {
+}
+
+.TosData-SideMenu-cont {
+  width: 20%;
+  position:absolute;
+  background-color: var(--dark_primary);
+}
+
+.TosData-content-components-priorityMarker{
+
+  margin-left:2%;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  display: flex;
+  flex-direction: row;
+
+}
+.TosData-priorityMarkerTool{
+
+}
+
+.TosData-content-components-riskAssesment{
+  margin-left: 50px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  background-color: #EEEE;
+  width: 80%;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+
+}
+.assesmentTextBox{
+  background-color: white;
+  margin-left: 5%;
+  height: 80%;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-left: 50px;
+
+
+}
+
+
+.assessmentList {
+  background-color: white;
+  margin-left: 5%;
+  margin-right: 15px;
+  margin-top: 5px;
+  margin-left: 15px;
+
+
+}
+
+
+.TosData-content-components-overview{
+  margin-bottom: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 80%
+}
+
+.TosData-content-components-priorityMarker .TosData-TosText {
+  width:70%;
+}
+
+
+.TosData-TosText{
+  position: relative;
+  width: 40px;
+  top: 25px;
+  right: 25px;
+}

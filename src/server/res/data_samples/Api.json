@@ -1,0 +1,32 @@
+[
+  {
+    "_id":"5b2820141c74672ec034627b",
+    "date_created":"2018-06-18",
+    "date_reviewed":"",
+    "api_name":"Google Maps",
+    "provider":"Google",
+    "risk_assessment":"",
+    "risk_level":"",
+    "review_status":"",
+    "tos":[
+      "https://policies.google.com/terms",
+      "https://developers.google.com/maps/terms",
+      "https://developers.google.com/terms/",
+      "https://developers.google.com/terms/site-terms"
+    ]
+  },
+  {
+    "_id":"5b5641eb7ea70ac02abfcb47",
+    "date_created":"2018-07-23",
+    "date_reviewed":"",
+    "api_name":"LinkedIn API",
+    "provider":"LinkedIn",
+    "risk_assessment":"",
+    "risk_level":"",
+    "review_status":"",
+    "tos":[
+      "https://www.linkedin.com/legal/user-agreement",
+      "https://www.linkedin.com/legal/privacy-policy"
+    ]
+  }
+]

@@ -1,0 +1,33 @@
+.tosRiskList {
+  border-style: solid;
+  border-width: 10px;
+  border-color: #ffce35;
+  word-wrap: break-word;
+  white-space: initial;
+  overflow-y: scroll;
+}
+
+.tosRiskList {
+  max-width: 50%;
+}
+.tosRiskList td {
+  padding-left: 10px;
+}
+
+.tosRiskList tr {
+  padding-top: 5px;
+}
+
+.tableItemUrl {
+  font-size: 90%
+}
+
+#scroll-2::-webkit-scrollbar {
+    width: 6px;
+    background-color: #f0ab00;
+}
+
+#scroll-2::-webkit-scrollbar-thumb {
+    width: 6px;
+    background-color: #000000;;
+}

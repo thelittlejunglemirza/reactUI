@@ -1,0 +1,43 @@
+{
+  "name": "mob_test",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^1.2.0",
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-mobx": "^1.0.2",
+    "draft-js": "^0.10.5",
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1",
+    "jspdf": "^1.4.1",
+    "material-ui": "^0.20.1",
+    "material-ui-pagination": "^1.1.6",
+    "mobx": "^4.2.1",
+    "mobx-react": "^5.1.2",
+    "mobx-react-router": "^4.0.3",
+    "react": "^16.4.2",
+    "react-app-rewire-mobx": "^1.0.8",
+    "react-bootstrap": "^0.32.1",
+    "react-collapsible": "^2.2.0",
+    "react-dom": "^16.4.2",
+    "react-html-parser": "^2.0.2",
+    "react-icons": "^2.2.7",
+    "react-inline-grid": "^0.5.3",
+    "react-native": "^0.55.4",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "react-string-replace": "^0.4.1",
+    "react-stylable-diff": "^2.0.0"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-scripts build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "mobx-react-devtools": "^5.0.1",
+    "react-app-rewired": "^1.5.2"
+  }
+}

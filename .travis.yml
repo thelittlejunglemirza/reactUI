@@ -1,0 +1,41 @@
+matrix:
+  include:
+    # ~~~~~~~~~~~~~ UI TEST ~~~~~~~~~~~~~~~~~
+    - language: python
+      # cache:
+      #   - pip
+      #   directories:
+      #     - node_modules
+      # node_js:
+      #   - "8.2.1"
+      python: 3.6
+      services:
+        - mongodb
+      install:
+        - sudo pip install -r src/server/requirements.txt
+        # - npm install newman
+      script:
+        - echo "testing server"
+        - cd src/
+        - ls
+        - python App.py & APP_PID=$!
+        # - sleep 5
+        # - cd ..
+        # - ls
+        # - node_modules/.bin/newman run src/server/tests/WASP-Server-tests.postman_collection.json -e src/server/tests/WASP-Server-tests.postman_environment.json --delay-request 5000
+      after_script:
+        # kill server
+        - kill $APP_PID
+
+    # ~~~~~~~~~~~~~ UI TEST ~~~~~~~~~~~~~~~~~
+    - language: node_js
+      node_js:
+        - "8.2.1"
+      before_install:
+        - cd src/ui
+      install:
+        - npm install
+      script:
+        - npm start & APP_PID=$!
+      after_script:
+        - kill $APP_PID
